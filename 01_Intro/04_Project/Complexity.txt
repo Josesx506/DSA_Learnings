@@ -17,5 +17,6 @@ Part B - The second loop to get the percentage gives a time complexity of O(n^2)
 
 
 Task 4
-Similar to Part B of Task 3
-Time complexity is O(n^2)
+There are 2 for loops each with a time complexity of n. Because the length of the calls and texts files are different,
+I'm not sure if it's n^2 or (an+bn) where a & b are the length of each file. The set difference has a worst case 
+complexity of O(n^2) if collisions occur while hasing, so the worst case time complexity is O(n^2).
