@@ -1,0 +1,21 @@
+Task 0
+Time complexity is constant because the indices chosen will directly access te first and last rows
+
+Task 1
+Time complexity O(n + n) where the first n is the length of the text data and the second n is the length of the calls data. 
+The set function is implemented as a hash table with a Big-O(1).
+Overall the worst case big O notation is O(n).
+
+Task 2
+Time complexity is O(n). The complexity of the call_duration variable and if statement are negligible.
+
+Task 3
+Part A - Time complexity is ~10n because of all the checks being made in the code_extractor() function. 
+The filtering of the list for unique values with set  and joining of the strings has a O(n) worst case notation
+
+Part B - The second loop to get the percentage gives a time complexity of O(n^2)
+
+
+Task 4
+Similar to Part B of Task 3
+Time complexity is O(n^2)
