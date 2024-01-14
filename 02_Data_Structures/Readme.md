@@ -1,0 +1,36 @@
+### Arrays and Linked Lists
+**Arrays** <br>
+When an array is created, it is always given some initial size—that is, the number of elements it should be able to hold (and how large each element is).The computer then finds a block of memory and sets aside the space for the array. Importantly, the space that gets set aside is one, continuous block. That is, all of the elements of the array are *contiguous*, meaning that they are all next to one another in memory. Because of the adjacent locations of array items in memory, we can assign each item an index and use that index to quickly and directly access the item. <br>
+Another key characteristic of an array is that **all of the elements** are the same size. <br><br>
+
+**Lists** <br>
+In contrast, the elements of a list may or may not be next to one another in memory! In this case, knowing the location of the first item in the list does not mean you can simply calculate the location of the other items. <br>
+One thing to **Note** is that `Python lists are essentially implemented as arrays`, but also include additional high-level functionality like `append` and `pop` which regular lists in other languages might not have. In particular, the elements of a Python list are contiguous in memory, and they can be accessed using an index. `Python Strings are also Arrays`. They are arrays of bytes representing unicode characters. <br>
+To determine the location of list items in memory, `linked-lists` which are discussed later can be used. <br><br>
+
+**Linked-Lists** <br>
+Items in a linked list are joined together by? Wait for it **links** 😀. Unlike arrays, you don't know the length of a linked-list. However, you the know the location of the next item you're accessing because of the link. Items are referred to as nodes. <br>
+In higher level languages like *Python*, there's no distinction between linked-lists and arrays. While an array typically stores an attribute `index` to tell you the positions of items, a linked list stores the attribute `next` to point to the location of the next item. <br>
+It's easier to insert and delete items from a linked list compared to an array. To insert an element between two nodes, 
+1. first assign the next value of the new node to the old node on the right,
+2. assign the next value of the old node on the left to the new node being inserted, and the insert operation is complete.
+
+Insertion into a linked list takes constant time O(1). To delete, you just change the `next` attribute of the nodes you wish to keep to ignore the unwanted item. **Note:** the next attribute of the last node in a linked-list is *None*, which is how we know which node is last. <br>
+
+You can also have a **Double-Linked-List** data type which has a `next` and `prev` attribute for each node, pointing to their locations in memory. You need to be careful not to lose references to nodes when inserting or deleting from both data types, however, performing these modifications on lists are less comlex than performing them on arrays. <br>
+
+In python linked-lists can be implemented using classes
+```python
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+head = Node(2)         # Create the first node in the linked-list aka head node
+head.next = Node(4)    # Append a new node to the end of the list
+
+print(head.next.value) # Access the value of the second item in the linked-list
+4
+```
+
+You can also have a **Circular linked-list**. This occur when the chain of nodes links back to itself somewhere. For example `NodeA` -> `NodeB` -> `NodeC` -> `NodeD` -> `NodeB` is a circular list because `NodeD` points back to `NodeB` creating a loop `NodeB` -> `NodeC` -> `NodeD` -> `NodeB`. A circular linked list is typically considered pathological because when you try to iterate through it, you'll never find the end. We usually want to detect if there is a loop in our linked lists to avoid these problems. 
