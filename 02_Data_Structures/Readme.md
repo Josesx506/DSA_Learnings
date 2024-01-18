@@ -68,3 +68,24 @@ $$
 <br>
 
 Then our time complexity for sorting itself is $O(N^2)$.  Converting from the linked list to an array is $O(N)$. Combined this is $O(N^2 + N) = O(N^2)$. Sorting algorithms such as quicksort and mergesort (which we'll look at later) are $N \log N$, so this algorithm is slower.<br>
+
+### Swapping Nodes in a LinkedList
+### Let's take an example to understand a simple approach - 
+Given linked list = [3, 4, 5, 2, 6, 1, 9] <br>
+position_one = 2<br>
+position_two = 5<br>
+**Note the original order of indexes - 0, 1, 2, 3, 4, 5, 6**<br>
+
+**Step 1** - Identify the two nodes to be swapped. Also, identify the previous of both the two nodes. 
+
+<img style="float: center;" src="figures/Step0.png" alt="Linked list showing the two nodes to be swapped, as well as the previous node of each"><br>
+
+**Step 2** - Swap the references making use of a temporary reference
+<img style="float: center;" src="figures/Step1.png" alt="The two_previous node is changed to point to the one_current node that it will be swapped with. In this case, the next node of 6 is changed to point to 5 instead of 1"><br><br>
+<img style="float: center;" src="figures/Step2.png" alt="Linked list mid-swap showing one link having been updated, and highlighting the temporary reference 2"><br><br>
+<img style="float: center;" src="figures/Step3.png" alt="Linked list showing the next node of one_current changing to the next node of two_current instead of the temporary reference. In this case, the next node of 5 points to 9 instead of 2."><br><br>
+<img style="float: center;" src="figures/Step4.png" alt="Linked list showing the next node of two_current changing to the temporary reference. In this case, the next node of 1 points to 2 instead of 9."><br><br>
+<img style="float: center;" src="figures/Step5.png" alt="Linked list showing the next node of one_previous changing to the node of two_current instead of one_current. In this case, the next node of 4 points to 1 instead of 5."><br><br>
+<img style="float: center;" src="figures/Step6.png" alt="Linked list showing the final linked list after swapping two elements."><br>
+
+**Check the order of the updated indexes as - 0, 1, 5, 3, 4, 2, 6**, which implies that index 2 and index 5 have been swapped. 
