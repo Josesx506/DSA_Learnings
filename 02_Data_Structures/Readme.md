@@ -34,3 +34,6 @@ print(head.next.value) # Access the value of the second item in the linked-list
 ```
 
 You can also have a **Circular linked-list**. This occur when the chain of nodes links back to itself somewhere. For example `NodeA` -> `NodeB` -> `NodeC` -> `NodeD` -> `NodeB` is a circular list because `NodeD` points back to `NodeB` creating a loop `NodeB` -> `NodeC` -> `NodeD` -> `NodeB`. A circular linked list is typically considered pathological because when you try to iterate through it, you'll never find the end. We usually want to detect if there is a loop in our linked lists to avoid these problems. 
+<p align="center">
+    <img style="width: 300px; height=120px;" src='figures/two_runners_circular.png'><br>
+</p>
