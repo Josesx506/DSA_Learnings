@@ -37,3 +37,34 @@ You can also have a **Circular linked-list**. This occur when the chain of nodes
 <p align="center">
     <img style="width: 300px; height=120px;" src='figures/two_runners_circular.png'><br>
 </p>
+
+
+### Computational Complexity of Flatenning a Nested Linked List
+Lets start with the computational complexity of `merge`.  Merge takes in two lists.  Let's say the lengths of the lists are $N_{1}$ and $N_{2}$. Because we assume the inputs are sorted, `merge` is very efficient. It looks at the first element of each list and adds the smaller one to the returned list.  Every time through the loop we are appending one element to the list, so it will take $N_{1} + N_{2}$ iterations until we have the whole list.<br>
+
+The complexity of `flatten` is a little more complicated to calculate.  Suppose our `NestedLinkedList` has $N$ linked lists and each list's length is represented by $M_{1}, M_{2}, ..., M_{N}$.<br>
+
+We can represent this recursion as:<br>
+
+$merge(M_{1}, merge(M_{2}, merge(..., merge(M_{N-1}, merge(M_{N}, None)))))$ <br>
+
+Let's start from the inside.  The inner most merge returns the $nth$ linked list.  The next merge does $M_{N-1} + M_{N}$ comparisons.  The next merge does $M_{N-2} + M_{N-1} + M_{N}$ comparisons. <br>
+
+Eventually we will do $N$ comparisons on all of the $M_{N}$ elements. We will do $N-1$ comparisons on $M_{N-1}$ elements. <br>
+
+This can be generalized as:<br>
+
+$$
+\sum_n^N n*M_{n}
+$$
+<br>
+
+### Computational Complexity of Sorting a Linked List
+Computational complexity is $O(N^2)$ where N is the length of the integer array. One insert is $O(M)$ where $M$ is the length of the existing linked list. As the list grows, the time complexity of inserting grows. It's something like $1 + 2 + 3 + 4 + \cdots + N$.<br>
+
+$$
+1 + 2 + 3 + 4 + \cdots + N = \sum_n^N n = \frac{N(N+1)}{2}
+$$
+<br>
+
+Then our time complexity for sorting itself is $O(N^2)$.  Converting from the linked list to an array is $O(N)$. Combined this is $O(N^2 + N) = O(N^2)$. Sorting algorithms such as quicksort and mergesort (which we'll look at later) are $N \log N$, so this algorithm is slower.<br>
