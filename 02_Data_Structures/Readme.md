@@ -89,3 +89,29 @@ position_two = 5<br>
 <img style="float: center;" src="figures/Step6.png" alt="Linked list showing the final linked list after swapping two elements."><br>
 
 **Check the order of the updated indexes as - 0, 1, 5, 3, 4, 2, 6**, which implies that index 2 and index 5 have been swapped. 
+
+<br><br>
+
+### Stacks and Queues
+ A **stack** is a data structure that consists of two main operations: `push` and `pop`. 
+ - A push is when you add an element to the top of the stack and a pop is when you remove an element from the top of the stack.
+
+Stacks can be implemented using arrays or linked lists in python, however, the selected option affects the **time complexity** of stack operations. 
+- If we pop or push an element with a linked list stack, there's no traversal. We simply add or remove the item from the head of the linked list, and update the head reference. So with our linked list implementaion, pop and push have a time complexity of **O(1)**.
+- If you use arrays, there's a copy overhead that's required each time the array is at capacity. Adding an item to the stack is fine—until we run out of space. Then we would have to create an entirely new (larger) array and copy over all of the references from the old array. *I don't like this because it can create latency overheads for long arrays*. Using a linked list avoids this issue compared to an array implemention of a stack. 
+- The copy overhead happens because, with an array, we had to specify some initial size (in other words, we had to set aside a contiguous block of memory in advance). But with a linked list, the nodes do not need to be contiguous. They can be scattered in different locations of memory, an that works just fine. This means that with a linked list, we can simply append as many nodes as we like. Using that as the underlying data structure for our stack means that we never run out of capacity, so pushing and popping items will always have a time complexity of O(1).
+
+<br>
+
+Potential applications of a stack are 
+- Implementing a news feed for a web app
+- Balancing parentheses in a code editor
+- Rearranging text in a string
+
+<br>
+
+Stacks can be easily reversed using a time complexity of O(n) and space complexity of O(n). To reverse the stack, 
+- create a new stack
+- pop items from the old stack while it isn't empty
+- push the popped items into the new stack
+Because the stack architecture is LIFO, the first item from the old stack is reversed to the bottom of the new stack. This will typically delete all the items in your original stack, hence the Udacity solution implements a recursive call to keep both the original and reversed stacks populated
