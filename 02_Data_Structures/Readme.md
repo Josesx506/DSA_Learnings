@@ -1,4 +1,10 @@
-### Arrays and Linked Lists
+### Table of contents
+- [Arrays and Linked Lists](#arrays-and-linked-lists)
+- [Stacks and Queues](#stacks-and-queues)
+- [Recursion](#recursion)
+
+
+## Arrays and Linked Lists
 **Arrays** <br>
 When an array is created, it is always given some initial size—that is, the number of elements it should be able to hold (and how large each element is).The computer then finds a block of memory and sets aside the space for the array. Importantly, the space that gets set aside is one, continuous block. That is, all of the elements of the array are *contiguous*, meaning that they are all next to one another in memory. Because of the adjacent locations of array items in memory, we can assign each item an index and use that index to quickly and directly access the item. <br>
 Another key characteristic of an array is that **all of the elements** are the same size. <br><br>
@@ -92,7 +98,7 @@ position_two = 5<br>
 
 <br><br>
 
-### Stacks and Queues
+## Stacks and Queues
  A **stack** is a data structure that consists of two main operations: `push` and `pop`. 
  - A push is when you add an element to the top of the stack and a pop is when you remove an element from the top of the stack.
 
@@ -110,8 +116,74 @@ Potential applications of a stack are
 
 <br>
 
-Stacks can be easily reversed using a time complexity of O(n) and space complexity of O(n). To reverse the stack, 
+Stacks can be easily **reversed** using a time complexity of O(n) and space complexity of O(n). To reverse the stack, 
 - create a new stack
 - pop items from the old stack while it isn't empty
 - push the popped items into the new stack
-Because the stack architecture is LIFO, the first item from the old stack is reversed to the bottom of the new stack. This will typically delete all the items in your original stack, hence the Udacity solution implements a recursive call to keep both the original and reversed stacks populated
+Because the stack architecture is LIFO, the first item from the old stack is reversed to the bottom of the new stack. This will typically delete all the items in your original stack, hence the Udacity solution implements a recursive call to keep both the original and reversed stacks populated.<br><br>
+
+
+
+A **queues** is a data structure that consists of two main operations: enqueue and dequeue. Queues are very similar to stacks but unlike stacks, the follow a FIFO data structure. The first element in is the first element out. When you add an element to the *tail* of the queue, the operation is called **enqueue**. When you remove an element from the *head* of the queue, the operation is called **dequeue**. There's also an operation called **peek**, where y look at the head element but you don't remove it. There are 2 main types of queues namely:
+- **Deque**: pronounced *deck*, is a combination of a queue and a stack that allows dequeing or enqueing operations from either the head or tail of the queue. 
+- **Priority QUeue**: Each element in the queue has a priority attribute. Whenever a dequeue operation is performed, the element with the highest priority is removed first. If two elements have the same priority, the oldest one is removed first.
+<br>
+
+Queues can also be implemented using arrays and linked lists. 
+- When using **linked lists**, the Queue class should have a head and tail attribute unlike Stacks that only have a head attribute. When an enqueue operation is performed, the item is added to the **tail**, and when a dequeue operation is performed, the item is added to the **head**. <br>
+    When we use enqueue, we simply create a new node and add it to the tail of the list. And when we dequeue an item, we simply get the value from the head of the list and then shift the head variable so that it refers to the next node over. Both of these operations happen in constant time—that is, they have a time-complexity of **`O(1)`**.
+- When using **arrays**, issues exist when the array becomes full, and items have to be moved around. The copy overhead also requires a modulu "%" operation to find the position of the `start` and `next_index` attributes within the class. In summary, don't implement queues using an array except when necessary.
+- Queues can also be created with **Stacks** that use high level python functions like append and pop. Many of the queue methods can be implemented relatively easily however, the dequeue operation requires you to reverse the list twice, resulting in a `O(n)` complexity, compared to O(1) of a linked list.
+- Like Stacks, Queues can also be implemented using python standard list methods like append and pop. The exception when using pop for dequeing a Queue, is to set an index of zero e.g `self.items.pop(0)`
+- Queues can also be reversed with a time complexity of O(2n) and a spcae complexity of O(2n).
+    - First initialize an empty **stack**
+    - **Dequeue** the main Queue and **push** the results into the stack which has a LIFO behaviour
+    - Re-**Enqueue** the main queue by **popping** the stacks items into the queue, and the item order will be reversed.
+    - Both while operations will require traversing the entire queue.
+
+
+## Recursion
+When you hear the terms *recursion* or *recursive*, this might remind you of the terms *repetition* and *repetitive* — and this is a good connection, because recursion does indeed involve repetition. However, recursion isn't just about repetition. <br>
+With recursion, we *solve a problem by first solving smaller instances of the same problem*. In practice, this often involves calling a function from within itself—in other words, we feed some input into the function, and the function produces some output—which we then feed back into the same function. And we continue to do this until we arrive at the solution. <br>
+In some regards, you can think of recursive functions as a `while` loop. it keeps calling itself until a termination criteria / exit condition is met. If the termination criteria is not met, you can get stuck in an `infinite recursion loop` where the function keeps calling itself infinitely.
+- Properties of a recursive function
+    - The function calls itself
+    - The function has a base case (This is like the exit condition. Let's the function know when to stop).
+    - The function needs to alter the input parameter at some point (similar to updating the variable in a while loop)
+- Example of a recursive function
+    ```bash
+    # Pseudo-code
+    function recursive(input) {
+        # Define the base case which is the exit conditon
+        if input <= 0
+            return input  # Function will stop whenever zero is reached
+        else
+            # Call the function on itself and alter input parameter
+            output = recursive(input - 1)
+            return output
+    }
+    ```
+    Python implementation of example
+    ```python
+    def recursive_subtraction(inputs):
+        if inputs <= 0:
+            return input
+        else:
+            output = recursive(input - 1) 
+            return output
+    
+    # Call the function. It'll keep running until zero is reached
+    recursive_subtraction(5)
+
+    # Analogous to while loop
+    inputs = 5
+    while inputs != 0:
+        inputs -= 1
+    ```
+
+Each time you write recursive function, think carefully about the base-case and when you'll like to recursion to stop. If the base-case is improperly defined, you run the risk of falling into a recursion loop. Use `print()` / `console.log()` / `printf()` statements to debug the code where necessary to understand what's happening. <br>
+
+- When using recursion, there are a few things to look out for that you don't have to worry about when running a loop (iteratively). Let's go over a few of those items.
+    - **Call stack**: If too many recursive calls are made, an error is encountered `RecursionError: maximum recursion depth exceeded in comparison`. <br>
+    Python has a limit on the depth of recursion to prevent a [stack overflow](https://en.wikipedia.org/wiki/Stack_overflow). However, some compilers will turn [tail-recursive functions](https://en.wikipedia.org/wiki/Recursion_(computer_science)#Tail-recursive_functions) into an iterative loop to prevent recursion from using up the stack. Since Python's compiler doesn't do this, you'll have to watch out for this limit.
+    - **Slicing**: When slicing arrays, using recursion might not always be efficienct. Look at the `01_recursion_intro` script for additional details. In some cases recursion is more readable and in some cases (loops) iteration is more readable. As you gain experience reading other people’s code, you’ll get an intuition for code readability.
