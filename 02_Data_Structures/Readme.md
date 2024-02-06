@@ -192,3 +192,43 @@ Each time you write recursive function, think carefully about the base-case and 
 <br><br>
 
 ## Trees
+Trees are like linked lists however, a single node of a tree can be connected to multiple child nodes. Properties of trees include
+- A tree must be completely connected i.e if you're starting  from the root, there must be a way to reach any leaf(node) within the tree.
+- There must not be any cycles in the tree. Cycles are like circular linked lists that form loops. It allows you to encounter the same node twice.
+
+### Tree Terminology
+A tree can be described in terms of 
+- **levels** (how long it will take to reach the root node). The root node is level 1.
+- Nodes in a tree are described using parents and children. If a node has multiple children, the children after the first child are siblings.
+    - A node can be a parent and a child depending on its level within the tree
+- Nodes are the lowest level are called **leaves** or external nodes.
+- Parent nodes are also known as internal nodes.
+- Connections between 2 nodes are called **edges**, and a   group of connections across multiple nodes are referred to a s **path**.
+- The **height** of a node is the distance between the node and the farthest leaf on the tree.
+- The **depth** of a node is the number of edges to the `root node`. Height and depth have inverse relationships.
+
+### Tree Traversal
+1. **Depth First Search (DFS)** - Explore any children nodes that exist before moving along. 
+    1. **Pre-order Travesal** - Start at root -> select the first child node (usually the one on the *left*) -> Continue traversing left nodes until we hit a leaf -> Once a leaf is encountered, go  up on level and *checkoff* the node on the right. Keep checking out nodes till all the nodes   on the left and right of the root have been traversed.
+    2. **In-order Traversal** - A node is only checked off when we've seen its left child and come back to it.
+    3. **Post-order Traversal** - A node is only checked off when we traversed all its children.
+2. **Breadth First Search (BFS)** - Explore all nodes at the same level bbefore moving along
+    1. **Level Oreder traversal** - Start at root -> visit all the children at level 2 -> continue to level 3 and visit all the children till you get to the leaves
+
+### 1. Binary Trees
+Binary Tress are trees where parents have at **most** 2 children. 
+- `Search` and `Delete` operations with a Binary tree is linear with an `O(n)` complexity. 
+- Each level can hold nodes up to a power of two making it easier for `insert` operations. Each node has 2 children, so each can have twice as many children as the previous level. This allows insert opeartions to have a complexity of `O(log(n))`
+    | Level | Node Capacity |
+    | :---: | :-----------: |
+    | 1 | 2<sup>0</sup> |
+    | 2 | 2<sup>1</sup> |
+    | 3 | 2<sup>2</sup> |
+    | 4 | 2<sup>3</sup> |
+
+Trees are not inherently organized data structures and rules have to be defined to ensure easier implementation of search, insert, and delete operations.
+
+### 1.1 Binary Search Trees
+Binary Search Trees (BST) are a more specific form of Binary Trees. BSTs are **sorted** so that every value on the left side of a node is smaller than the internal node, and every value on the right side is larger than the parent. Like the Binary tree, it's also allowed to have only two children. <br>
+When `searching` through a BST, we start at the root node. If the target is *smaller* than the root's value, we go **left**, else if it is *larger*, we go **right**. This allows search operations to be completed in `O(log(n))` time. `Insertion` operations also have  a similar complexity. `Delete` operations are still complicated like regular binary trees so similar considerations apply. <br>
+The one drawback of BST is that they can be unbalanced, resulting on nodes occuring only on the right of either the root or an internal node. This lowers the time complexity from O(log(n)) to O(n) because all the nodes are now linear. 
