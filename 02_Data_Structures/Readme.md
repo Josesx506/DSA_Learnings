@@ -2,6 +2,7 @@
 - [Arrays and Linked Lists](#arrays-and-linked-lists)
 - [Stacks and Queues](#stacks-and-queues)
 - [Recursion](#recursion)
+- [Trees](#trees)
 
 
 ## Arrays and Linked Lists
@@ -187,3 +188,7 @@ Each time you write recursive function, think carefully about the base-case and 
     - **Call stack**: If too many recursive calls are made, an error is encountered `RecursionError: maximum recursion depth exceeded in comparison`. <br>
     Python has a limit on the depth of recursion to prevent a [stack overflow](https://en.wikipedia.org/wiki/Stack_overflow). However, some compilers will turn [tail-recursive functions](https://en.wikipedia.org/wiki/Recursion_(computer_science)#Tail-recursive_functions) into an iterative loop to prevent recursion from using up the stack. Since Python's compiler doesn't do this, you'll have to watch out for this limit.
     - **Slicing**: When slicing arrays, using recursion might not always be efficienct. Look at the `01_recursion_intro` script for additional details. In some cases recursion is more readable and in some cases (loops) iteration is more readable. As you gain experience reading other people’s code, you’ll get an intuition for code readability.
+
+<br><br>
+
+## Trees
