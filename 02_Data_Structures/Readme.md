@@ -131,7 +131,7 @@ A **queues** is a data structure that consists of two main operations: enqueue a
 <br>
 
 Queues can also be implemented using arrays and linked lists. 
-- When using **linked lists**, the Queue class should have a head and tail attribute unlike Stacks that only have a head attribute. When an enqueue operation is performed, the item is added to the **tail**, and when a dequeue operation is performed, the item is added to the **head**. <br>
+- When using **linked lists**, the Queue class should have a `head` and `tail` attribute unlike Stacks that only have a head attribute. When an enqueue operation is performed, the item is added to the **tail**, and when a dequeue operation is performed, the item is added to the **head**. <br>
     When we use enqueue, we simply create a new node and add it to the tail of the list. And when we dequeue an item, we simply get the value from the head of the list and then shift the head variable so that it refers to the next node over. Both of these operations happen in constant time—that is, they have a time-complexity of **`O(1)`**.
 - When using **arrays**, issues exist when the array becomes full, and items have to be moved around. The copy overhead also requires a modulu "%" operation to find the position of the `start` and `next_index` attributes within the class. In summary, don't implement queues using an array except when necessary.
 - Queues can also be created with **Stacks** that use high level python functions like append and pop. Many of the queue methods can be implemented relatively easily however, the dequeue operation requires you to reverse the list twice, resulting in a `O(n)` complexity, compared to O(1) of a linked list.
@@ -213,7 +213,9 @@ A tree can be described in terms of
     2. **In-order Traversal** - A node is only checked off when we've seen its left child and come back to it.
     3. **Post-order Traversal** - A node is only checked off when we traversed all its children.
 2. **Breadth First Search (BFS)** - Explore all nodes at the same level bbefore moving along
-    1. **Level Oreder traversal** - Start at root -> visit all the children at level 2 -> continue to level 3 and visit all the children till you get to the leaves
+    1. **Level Oreder traversal** - Start at root -> visit all the children at level 2 -> continue to level 3 and visit all the children till you get to the leaves.
+
+Because Tree traversal is complex, you can use a stack to keep track of the traversal steps. A list can also be used to save the order in which nodes are visited within the tree. While loops can be inclued with the stacks to traverse the tree however, the `Tree()` class will require additional attributes for the while loop to be efficient. This additional attributes can be defined in a new class named `State` which checks whether the left or right branch of a node has been traversed. Taversal can also be done with recursion which doesn't require a while loop nor state to print the visit order
 
 ### 1. Binary Trees
 Binary Tress are trees where parents have at **most** 2 children. 
@@ -231,4 +233,4 @@ Trees are not inherently organized data structures and rules have to be defined 
 ### 1.1 Binary Search Trees
 Binary Search Trees (BST) are a more specific form of Binary Trees. BSTs are **sorted** so that every value on the left side of a node is smaller than the internal node, and every value on the right side is larger than the parent. Like the Binary tree, it's also allowed to have only two children. <br>
 When `searching` through a BST, we start at the root node. If the target is *smaller* than the root's value, we go **left**, else if it is *larger*, we go **right**. This allows search operations to be completed in `O(log(n))` time. `Insertion` operations also have  a similar complexity. `Delete` operations are still complicated like regular binary trees so similar considerations apply. <br>
-The one drawback of BST is that they can be unbalanced, resulting on nodes occuring only on the right of either the root or an internal node. This lowers the time complexity from O(log(n)) to O(n) because all the nodes are now linear. 
+The one drawback of BST is that they can be unbalanced, resulting on nodes occuring only on the right of either the root or an internal node. This lowers the time complexity from O(log(n)) to O(n) because all the nodes are now linear.
