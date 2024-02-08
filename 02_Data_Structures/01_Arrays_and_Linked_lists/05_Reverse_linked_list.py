@@ -57,12 +57,12 @@ def reverse(linked_list):
         # create a new node
         new_node = Node(value)
         new_node.next = prev_node           # Change the link of the next node to be the previous node
-        prev_node = new_node                # Mark the current new node as the "prev_node" for next iteration
+        prev_node = new_node          # Mark the current new node as the "prev_node" for next iteration
     
     # Update the new_list.head to point to the final node that came out of the loop
     new_list.head = prev_node
     
-    # The syntax below reverses the linked-list but throws an error on the second tes
+    # The syntax below reverses the linked-list but throws an error on the second test
     # prev_node = None                        # Make this none since this will be the tail of the reversed list
     # current_node = linked_list.head         # Extract the head of the linked list
     

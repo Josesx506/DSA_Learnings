@@ -215,9 +215,9 @@ A tree can be described in terms of
 
 ### Tree Traversal
 1. **Depth First Search (DFS)** - Explore any children nodes that exist before moving along. 
-    1. **Pre-order Travesal** - Start at root -> select the first child node (usually the one on the *left*) -> Continue traversing left nodes until we hit a leaf -> Once a leaf is encountered, go  up on level and *checkoff* the node on the right. Keep checking out nodes till all the nodes   on the left and right of the root have been traversed.
-    2. **In-order Traversal** - A node is only checked off when we've seen its left child and come back to it.
-    3. **Post-order Traversal** - A node is only checked off when we traversed all its children.
+    1. **Pre-order Travesal** - Start at root -> select the first child node (usually the one on the *left*) -> Continue traversing left nodes until we hit a leaf -> Once a leaf is encountered, go  up on level and *checkoff* the node on the right. Keep checking out nodes till all the nodes   on the left and right of the root have been traversed. `visit node -> visit left child -> visit right child`
+    2. **In-order Traversal** - A node is only checked off when we've seen its left child and come back to it. `visit left child -> visit node -> visit right child`
+    3. **Post-order Traversal** - A node is only checked off when we traversed all its children i.e. left and right children..
 
     Because Tree traversal is complex, you can use a ***stack*** to keep track of the traversal steps. A list can also be used to save the order in which nodes are visited within the tree. While loops can be inclued with the stacks to traverse the tree however, the `Tree()` class will require additional attributes for the while loop to be efficient. This additional attributes can be defined in a new class named `State` which checks whether the left or right branch of a node has been traversed. Taversal can also be done with recursion which doesn't require a while loop nor state to print the visit order
 
