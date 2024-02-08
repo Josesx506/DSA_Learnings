@@ -142,6 +142,8 @@ Queues can also be implemented using arrays and linked lists.
     - Re-**Enqueue** the main queue by **popping** the stacks items into the queue, and the item order will be reversed.
     - Both while operations will require traversing the entire queue.
 
+Python's `collections` module has a specialized deque datatype (ref: [deque datatype documentation](https://docs.python.org/3/library/collections.html#collections.deque)). We can append a new element to the right of the list with `append` method and to the left of the list with `appendleft`. To remove and return the right element of the list, we can use `pop` method.
+
 
 ## Recursion
 When you hear the terms *recursion* or *recursive*, this might remind you of the terms *repetition* and *repetitive* — and this is a good connection, because recursion does indeed involve repetition. However, recursion isn't just about repetition. <br>
@@ -196,6 +198,10 @@ Trees are like linked lists however, a single node of a tree can be connected to
 - A tree must be completely connected i.e if you're starting  from the root, there must be a way to reach any leaf(node) within the tree.
 - There must not be any cycles in the tree. Cycles are like circular linked lists that form loops. It allows you to encounter the same node twice.
 
+<p align="center">
+    <img style="width: 300px; height=120px;" src='figures/tree_01.png'><br>
+</p>
+
 ### Tree Terminology
 A tree can be described in terms of 
 - **levels** (how long it will take to reach the root node). The root node is level 1.
@@ -212,10 +218,14 @@ A tree can be described in terms of
     1. **Pre-order Travesal** - Start at root -> select the first child node (usually the one on the *left*) -> Continue traversing left nodes until we hit a leaf -> Once a leaf is encountered, go  up on level and *checkoff* the node on the right. Keep checking out nodes till all the nodes   on the left and right of the root have been traversed.
     2. **In-order Traversal** - A node is only checked off when we've seen its left child and come back to it.
     3. **Post-order Traversal** - A node is only checked off when we traversed all its children.
+
+    Because Tree traversal is complex, you can use a ***stack*** to keep track of the traversal steps. A list can also be used to save the order in which nodes are visited within the tree. While loops can be inclued with the stacks to traverse the tree however, the `Tree()` class will require additional attributes for the while loop to be efficient. This additional attributes can be defined in a new class named `State` which checks whether the left or right branch of a node has been traversed. Taversal can also be done with recursion which doesn't require a while loop nor state to print the visit order
+
 2. **Breadth First Search (BFS)** - Explore all nodes at the same level bbefore moving along
     1. **Level Oreder traversal** - Start at root -> visit all the children at level 2 -> continue to level 3 and visit all the children till you get to the leaves.
 
-Because Tree traversal is complex, you can use a stack to keep track of the traversal steps. A list can also be used to save the order in which nodes are visited within the tree. While loops can be inclued with the stacks to traverse the tree however, the `Tree()` class will require additional attributes for the while loop to be efficient. This additional attributes can be defined in a new class named `State` which checks whether the left or right branch of a node has been traversed. Taversal can also be done with recursion which doesn't require a while loop nor state to print the visit order
+    When perform Breadth First Search, you can use a queue to keep track of items.
+
 
 ### 1. Binary Trees
 Binary Tress are trees where parents have at **most** 2 children. 
