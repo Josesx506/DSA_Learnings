@@ -3,6 +3,7 @@
 - [Stacks and Queues](#stacks-and-queues)
 - [Recursion](#recursion)
 - [Trees](#trees)
+- [Maps](#maps)
 
 
 ## Arrays and Linked Lists
@@ -244,3 +245,43 @@ Trees are not inherently organized data structures and rules have to be defined 
 Binary Search Trees (BST) are a more specific form of Binary Trees. BSTs are **sorted** so that every value on the left side of a node is smaller than the internal node, and every value on the right side is larger than the parent. Like the Binary tree, it's also allowed to have only two children. <br>
 When `searching` through a BST, we start at the root node. If the target is *smaller* than the root's value, we go **left**, else if it is *larger*, we go **right**. This allows search operations to be completed in `O(log(n))` time. `Insertion` operations also have  a similar complexity. `Delete` operations are still complicated like regular binary trees so similar considerations apply. <br>
 The one drawback of BST is that they can be unbalanced, resulting on nodes occuring only on the right of either the root or an internal node. This lowers the time complexity from O(log(n)) to O(n) because all the nodes are now linear.
+
+<br><br>
+
+## Maps
+Maps are data structures with a key-value architecture. They are identical to dictionaries where each key has an associated value. <br>
+Maps are *set* based data structures i.e., they don't allow duplication of keys within them. A group of keys in a map are a set and must be unique. The keys are not ordered in any way.
+<p align="center">
+    <img style="width: 300px; height=500px;" src='figures/hash_maps.png'><br>
+</p>
+
+### Hashing
+The purpose of a `Hash function` is to transform some value into one that can be stored or retrieved easily within a `Hash Table`. This enables constant time lookup `O(1)` is the stored item is the only item stored in that index. <br>
+A **collision** occurs if a hash function returns the same hash value for different inputs. This means that both items will be stored at the same location within the hash table. There are two ways to fix a collision
+- Change the hash table allowable size to allow more items to be stored at independent indexes. This introduces memory overhead in the required storage space
+- Modify the hash table to allow storage of multiple items at an index. Each index is referred to as a **bucket** which is essentially like a linked-list where new items are appended to the end of the list. In the worst case scenario, where all the items are stored at only one index, the lookup time is `O(n)`.
+
+<p align="center">
+    <img style="width: 500px; height=300px;" src='figures/hash_map_collisions.png'><br>
+</p>
+
+Ideally no implementation option is perfect, and different options can be used depending on the question. The distribution of the data determines the preferred option, and hash functions can be optimized to reduce collisions within buckets. In some cases an external hash function can be used to place items within a bucket, and an internal function redistributes storage of items in each bucket.
+
+### Hash Maps
+This is one of the main places where hash functions show up. The key is passed into a hash function, and the key value pair are stored within a bucket.
+```bash
+{key, value} -> hash_function(key) -> Bucket(n)[<key, value>]
+```
+A hashmap class should have some basic methods including
+- init()  Set up the hash table, prime number, and number of entries counter
+- put()   Insert an item into the table
+- get()   Obtain a saved item
+- get_bucket_index()  Resolve the bucket index to place new items into the table
+- get_hash_function() Calculate hash function to transform input keys
+- rehash()  Expand the size of the hash table when the load factor limit is reached
+- delete()  Delete an item from the hash map
+
+<br>
+
+A popular power value to use in hash maps is 31 because it has been proven as a good prime number. Other hash functions exist, but it's better not to complicate things by trying to get the best hasfunction.
+
